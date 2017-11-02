@@ -159,14 +159,14 @@ class DnsClientBase(rest_client.RestClient):
                        include in the request URI.
         :returns: Serialized object as a dictionary.
         """
-        uri = self.get_uri(resource, params=params)
-
         get_params = {}
         if params:
             headers = params.pop('headers', None)
             if headers:
                 get_params = dict(headers=headers,
                                   extra_headers=True)
+
+        uri = self.get_uri(resource, params=params)
 
         resp, body = self.get(uri, **get_params)
 
